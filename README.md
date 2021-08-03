@@ -81,6 +81,8 @@ system's requirement needs. Also will have to have xcode installed and configure
 with `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer/`. Load and
 install has worked using the git repo https://github.com/chris1111/Kext-Droplet-Big-Sur.
 
+Finally, said module can be started using the command `kmutil load -p example.kext/`
+as root from the directory `/Library/Extensions`.
 
 ## Support
 
