@@ -72,6 +72,15 @@ Recovery OS or NetBoot/NetInstall/NetRestore images, or using Mobile Device
 Management (MDM).  For details, refer to
 [TN2459](https://developer.apple.com/library/archive/technotes/tn2459/).
 
+## Building Revision
+
+When building on latest osx silicon targets, the command line was:
+`MACOSX_VERSION_MIN=11.3 make`. The version 11.3 was used because  of the xcode
+version at the time. Without the MIN prefix, will have to use whatever the running
+system's requirement needs. Also will have to have xcode installed and configured
+with `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer/`. Load and
+install has worked using the git repo https://github.com/chris1111/Kext-Droplet-Big-Sur.
+
 
 ## Support
 

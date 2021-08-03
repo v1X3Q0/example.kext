@@ -57,12 +57,13 @@ ifndef BUNDLEDOMAIN
 $(error BUNDLEDOMAIN not defined)
 endif
 
+XCODE_PATH =	$(shell xcode-select -p)
 
 # defaults
 BUNDLEID?=	$(BUNDLEDOMAIN).kext.$(KEXTNAME)
 KEXTBUNDLE?=	$(KEXTNAME).kext
 KEXTMACHO?=	$(KEXTNAME)
-ARCH?=		x86_64
+ARCH?=		arm64e
 #ARCH?=		i386
 PREFIX?=	/Library/Extensions/
 
@@ -81,7 +82,8 @@ CPPFLAGS+=	-DKERNEL \
 		-DAPPLE \
 		-DNeXT \
 		-I/System/Library/Frameworks/Kernel.framework/Headers \
-		-I/System/Library/Frameworks/Kernel.framework/PrivateHeaders
+		-I/System/Library/Frameworks/Kernel.framework/PrivateHeaders \
+		-I$(XCODE_PATH)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Kernel.framework/Versions/A/Headers/
 
 # convenience defines
 CPPFLAGS+=	-DKEXTNAME_S=\"$(KEXTNAME)\" \
@@ -104,8 +106,9 @@ CFLAGS+=	-Wall -Wextra
 LDFLAGS+=	-arch $(ARCH)
 LDFLAGS+=	-nostdlib \
 		-Xlinker -kext \
-		-Xlinker -object_path_lto \
 		-Xlinker -export_dynamic
+#		-Xlinker -object_path_lto
+
 LDFLAGS+=	-Xlinker -fatal_warnings
 
 # libraries
